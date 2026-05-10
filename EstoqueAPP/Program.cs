@@ -1,17 +1,50 @@
+using EstoqueAPP.Presenters.Main;
+using EstoqueAPP.Presenters.Register;
+using EstoqueAPP.Services.Navigation;
+using EstoqueAPP.Views.Main;
+using EstoqueAPP.Views.Register;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace EstoqueAPP
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+
+            using (var scope = services.BuildServiceProvider())
+            {
+                ApplicationConfiguration.Initialize();
+
+                var mainForm = scope.GetRequiredService<MainForm>();
+                scope.GetRequiredService<MainPresenter>();
+
+                Application.Run(mainForm);
+            }
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            //Container Principal
+            services.AddSingleton<MainForm>();
+
+            //Forms
+            services.AddScoped<RegisterForm>();
+
+            //Presenters
+            services.AddSingleton<MainPresenter>();
+            services.AddScoped<RegisterPresenter>();
+
+            //Interfaces
+            services.AddSingleton<INavigationService, NavigationService>();
+            services.AddTransient<IMainView>(sp => sp.GetRequiredService<MainForm>());
+            services.AddTransient<IRegisterView, RegisterForm>();
+
+            //Services
+            services.AddSingleton<NavigationService>();
         }
     }
 }
