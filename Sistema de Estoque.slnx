@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="EstoqueAPI/EstoqueAPI.csproj" Id="9269d642-3cd2-4688-864f-6020645d3d63" />
   <Project Path="EstoqueAPP/EstoqueAPP.csproj" />
 </Solution>
