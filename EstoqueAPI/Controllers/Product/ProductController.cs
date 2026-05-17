@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EstoqueAPI.Controllers.Product
 {
-    [Route("api/[controller]")]
+    [Route("api/product")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace EstoqueAPI.Controllers.Product
         }
 
         // POST api/<ProductController>
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Post([FromBody] RegisterProductDTO product)
         {
             await _productService.RegisterProduct(product);
