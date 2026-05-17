@@ -1,6 +1,7 @@
 using EstoqueAPP.Presenters.Main;
 using EstoqueAPP.Presenters.Register;
 using EstoqueAPP.Services.Navigation;
+using EstoqueAPP.Services.Product;
 using EstoqueAPP.Views.Main;
 using EstoqueAPP.Views.Register;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,10 +42,18 @@ namespace EstoqueAPP
             //Interfaces
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddTransient<IMainView>(sp => sp.GetRequiredService<MainForm>());
-            services.AddTransient<IRegisterView, RegisterForm>();
+            services.AddTransient<IRegisterView>(sp => sp.GetRequiredService<RegisterForm>());
 
             //Services
             services.AddSingleton<NavigationService>();
+            services.AddScoped<ProductService>();
+
+            //API
+            services.AddHttpClient<IProductService, ProductService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7010/api/product/");
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
         }
     }
 }
