@@ -33,10 +33,11 @@
             label2 = new Label();
             txtBoxBarCode = new TextBox();
             label3 = new Label();
-            txtBoxAmount = new TextBox();
             label4 = new Label();
             dateTimeValidate = new DateTimePicker();
             btnRegisterProduct = new Button();
+            numericAmount = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)numericAmount).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -80,13 +81,6 @@
             label3.TabIndex = 4;
             label3.Text = "Quantidade";
             // 
-            // txtBoxAmount
-            // 
-            txtBoxAmount.Location = new Point(283, 59);
-            txtBoxAmount.Name = "txtBoxAmount";
-            txtBoxAmount.Size = new Size(200, 23);
-            txtBoxAmount.TabIndex = 5;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -114,23 +108,33 @@
             btnRegisterProduct.UseVisualStyleBackColor = true;
             btnRegisterProduct.Click += btnRegisterProduct_Click;
             // 
+            // numericAmount
+            // 
+            numericAmount.Location = new Point(283, 60);
+            numericAmount.Name = "numericAmount";
+            numericAmount.Size = new Size(200, 23);
+            numericAmount.TabIndex = 9;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(497, 245);
+            Controls.Add(numericAmount);
             Controls.Add(btnRegisterProduct);
             Controls.Add(dateTimeValidate);
             Controls.Add(label4);
-            Controls.Add(txtBoxAmount);
             Controls.Add(label3);
             Controls.Add(txtBoxBarCode);
             Controls.Add(label2);
             Controls.Add(txtBoxName);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastrar Produto";
+            ((System.ComponentModel.ISupportInitialize)numericAmount).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,9 +146,9 @@
         private Label label2;
         private TextBox txtBoxBarCode;
         private Label label3;
-        private TextBox txtBoxAmount;
         private Label label4;
         private DateTimePicker dateTimeValidate;
         private Button btnRegisterProduct;
+        private NumericUpDown numericAmount;
     }
 }

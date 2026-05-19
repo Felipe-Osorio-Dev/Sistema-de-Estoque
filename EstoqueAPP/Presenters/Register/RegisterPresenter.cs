@@ -18,7 +18,6 @@ namespace EstoqueAPP.Presenters.Register
 
         private async void OnRegisterProduct(object sender, RegisterProductEventArgs e)
         {
-            MessageBox.Show("Testando");
             await _productService.RegisterProduct(e.Product);
         }
     }
